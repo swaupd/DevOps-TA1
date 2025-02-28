@@ -19,36 +19,19 @@
         background: linear-gradient(to right, #2c3e50, #3498db);
         padding: 1rem;
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
       }
 
-      .nav-left, .nav-right {
-        display: flex;
-        align-items: center;
-      }
-
-      nav a, .nav-button {
+      nav a {
         color: white;
         text-decoration: none;
         margin: 0 1rem;
         padding: 0.5rem 1rem;
         border-radius: 4px;
-        transition: all 0.3s ease;
-        cursor: pointer;
-        border: none;
-        background: none;
-        font-size: 1rem;
+        transition: background-color 0.3s;
       }
 
-      nav a:hover, .nav-button:hover {
+      nav a:hover {
         background-color: rgba(255,255,255,0.1);
-      }
-
-      .logout-btn {
-        background: rgba(255,255,255,0.1);
-        border: 1px solid white;
       }
 
       main {
@@ -57,36 +40,6 @@
         max-width: 1200px;
         padding: 2rem;
         box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .welcome-container {
-        text-align: center;
-        margin: 2rem 0;
-      }
-
-      .auth-buttons {
-        display: flex;
-        gap: 1rem;
-        margin: 2rem 0;
-      }
-
-      .auth-button {
-        padding: 1rem 2rem;
-        border-radius: 25px;
-        border: none;
-        background: linear-gradient(45deg, #2c3e50, #3498db);
-        color: white;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-size: 1.1rem;
-      }
-
-      .auth-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
       }
 
       footer {
@@ -98,37 +51,26 @@
         margin-top: auto;
       }
 
-      #adviceSection {
-        display: none; /* Initially hidden */
-      }
-
-      #loginPrompt {
-        text-align: center;
-        padding: 2rem;
-        background: rgba(255,255,255,0.9);
-        border-radius: 15px;
-        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
-      }
-
-      /* Add new styles for the feature buttons */
-      .feature-buttons {
+      /* New styles for feature buttons */
+      .feature-container {
         display: flex;
-        gap: 1rem;
-        margin: 2rem 0;
         justify-content: center;
+        gap: 2rem;
+        margin-top: 2rem;
+        padding: 1rem;
       }
 
       .feature-button {
-        padding: 0.8rem 1.5rem;
-        border-radius: 8px;
-        border: none;
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
         background: linear-gradient(45deg, #3498db, #2980b9);
         color: white;
+        border: none;
+        border-radius: 8px;
         cursor: pointer;
         transition: all 0.3s ease;
-        font-size: 1rem;
         text-decoration: none;
-        display: inline-flex;
+        display: flex;
         align-items: center;
         gap: 0.5rem;
       }
@@ -141,51 +83,30 @@
       .feature-button i {
         font-size: 1.2rem;
       }
-
-      #featureSection {
-        width: 100%;
-        display: none; /* Initially hidden */
-      }
     </style>
-    <!-- Add Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   </head>
   <body>
     <nav>
-      <div class="nav-left">
-        <a href="index.html">Home</a>
-      </div>
-      <div class="nav-right" id="navButtons">
-        <!-- Navigation buttons will be dynamically inserted here -->
-      </div>
+      <a href="index.html">Home</a>
+      <a href="Login.html">Login</a>
+      <a href="Registration.html">Register</a>
     </nav>
 
     <main>
-      <div id="loginPrompt">
-        <h2>Welcome to Random Advice Generator</h2>
-        <p>Please login or register to continue</p>
-        <div class="auth-buttons">
-          <button class="auth-button" onclick="location.href='Login.html'">Login</button>
-          <button class="auth-button" onclick="location.href='Registration.html'">Register</button>
-        </div>
-      </div>
-
       <div id="adviceSection">
         <!-- RandomAdvice component will be inserted here -->
       </div>
-
-      <!-- Add new feature section -->
-      <div id="featureSection">
-        <div class="feature-buttons">
-          <a href="rating.html" class="feature-button">
-            <i class="fas fa-star"></i>
-            Rate Us
-          </a>
-          <a href="customer_comment.html" class="feature-button">
-            <i class="fas fa-comments"></i>
-            Leave a Comment
-          </a>
-        </div>
+      
+      <div class="feature-container">
+        <a href="rating.html" class="feature-button">
+          <i class="fas fa-star"></i>
+          Rate Us
+        </a>
+        <a href="customer_comment.html" class="feature-button">
+          <i class="fas fa-comments"></i>
+          Leave a Comment
+        </a>
       </div>
     </main>
 
@@ -194,57 +115,6 @@
     </footer>
 
     <script src="RandomAdvice.js"></script>
-    <script>
-      // Check authentication status when page loads
-      document.addEventListener('DOMContentLoaded', function() {
-        checkAuthStatus();
-      });
-
-      function checkAuthStatus() {
-        const userDetails = JSON.parse(localStorage.getItem('userDetails'));
-        const navButtons = document.getElementById('navButtons');
-        const loginPrompt = document.getElementById('loginPrompt');
-        const adviceSection = document.getElementById('adviceSection');
-        const featureSection = document.getElementById('featureSection');
-
-        if (userDetails) {
-          // User is logged in
-          navButtons.innerHTML = `
-            <a href="rating.html" class="nav-button">
-              <i class="fas fa-star"></i> Rate
-            </a>
-            <a href="customer_comment.html" class="nav-button">
-              <i class="fas fa-comments"></i> Comment
-            </a>
-            <span style="color: white; margin-right: 1rem;">Welcome, ${userDetails.username}</span>
-            <button class="nav-button logout-btn" onclick="logout()">Logout</button>
-          `;
-          loginPrompt.style.display = 'none';
-          adviceSection.style.display = 'block';
-          featureSection.style.display = 'block';
-          
-          // Initialize advice generator if not already initialized
-          if (!window.adviceGenerator) {
-            window.adviceGenerator = new RandomAdvice();
-          }
-        } else {
-          // User is not logged in
-          navButtons.innerHTML = `
-            <a href="Login.html">Login</a>
-            <a href="Registration.html">Register</a>
-          `;
-          loginPrompt.style.display = 'block';
-          adviceSection.style.display = 'none';
-          featureSection.style.display = 'none';
-        }
-      }
-
-      function logout() {
-        localStorage.removeItem('userDetails');
-        checkAuthStatus();
-        location.href = 'Login.html';
-      }
-    </script>
   </body>
 </html>
 
