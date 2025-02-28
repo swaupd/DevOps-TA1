@@ -39,17 +39,20 @@ A Spring Boot web application that provides random advice and allows users to in
 - Comment submission
 - Comment display functionality
 
-Test Case	Input	Expected Output	Pass/Fail
-1. Submit a valid comment	Enter “This is a test comment” and click “Submit”	The comment should appear in the comments section	✅ Pass
-2. Submit multiple comments	Enter “First comment” and submit, then enter “Second comment” and submit	Both comments should appear in the comments section, with the latest one at the top	✅ Pass
-3. Submit a comment with spaces and valid text	Enter “   Hello, world!   “ and click “Submit”	The comment should appear in the comments section, trimmed to “Hello, world!”	✅ Pass
-4. Submit a comment with special characters	Enter “Great service! 😊💯🔥” and click “Submit”	The comment should appear in the comments section with emojis	✅ Pass
-5. Submit a comment with numbers	Enter “Order #12345 was great!” and click “Submit”	The comment should appear in the comments section	✅ Pass
-6. Submit an empty comment	Click “Submit” without entering text	No comment should be added (function prevents empty submission)	❌ Fail
-7. Submit a comment with only spaces	Enter “      “ (only spaces) and click “Submit”	No comment should be added	❌ Fail
-8. Check comment persistence after page refresh	Enter “Persistent comment”, submit, then refresh the page	The comment should NOT be present after the page reloads	❌ Fail
-9. Submit an extremely long comment	Enter a comment with 1000+ characters and click “Submit”	May cause UI issues if no character limit is enforced	❌ Fail
-10. Check comment box reset after submit	Enter “Check reset”, click “Submit”, then check the input box	The comment box should be cleared after submitting	✅ Pass
+### Test Cases for Comment Section
+
+| Test Case No. | Input | Expected Output | Status |
+|---------------|-------|-----------------|--------|
+| TC_01 | Enter “This is a test comment” and click “Submit” | The comment should appear in the comments section | ✅ Pass |
+| TC_02 | Enter “First comment” and submit, then enter “Second comment” and submit | Both comments should appear in the comments section, with the latest one at the top | ✅ Pass |
+| TC_03 | Enter “   Hello, world!   “ and click “Submit” | The comment should appear in the comments section, trimmed to “Hello, world!” | ✅ Pass |
+| TC_04 | Enter “Great service! 😊💯🔥” and click “Submit” | The comment should appear in the comments section with emojis | ✅ Pass |
+| TC_05 | Enter “Order #12345 was great!” and click “Submit” | The comment should appear in the comments section | ✅ Pass |
+| TC_06 | Click “Submit” without entering text | No comment should be added (function prevents empty submission) | ❌ Fail |
+| TC_07 | Enter “      “ (only spaces) and click “Submit” | No comment should be added | ❌ Fail |
+| TC_08 | Enter “Persistent comment”, submit, then refresh the page | The comment should NOT be present after the page reloads | ❌ Fail |
+| TC_09 | Enter a comment with 1000+ characters and click “Submit” | May cause UI issues if no character limit is enforced | ❌ Fail |
+| TC_10 | Enter “Check reset”, click “Submit”, then check the input box | The comment box should be cleared after submitting | ✅ Pass |
 
 ## Technical Stack
 - Spring Boot 3.2.3
