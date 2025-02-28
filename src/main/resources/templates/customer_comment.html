@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Customer Comment Section</title>
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: #f8f9fa;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Customer Comments</h2>
+            <div class="comment-box">
+                <textarea id="comment" placeholder="Write your comment here..."></textarea>
+                <button onclick="addComment()">Submit</button>
+            </div>
+            <div class="comments-section" id="comments"></div>
+        </div>
+        <script>
+            function addComment(){
+                let commentText = document.getElementById('comment').value;
+                if(commentText.trim() == '')return;
+                let commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.textContent = commentText;
+
+                document.getElementById('comments').prepend(commentDiv);
+                document.getElementById('comment').value = '';
+            }
+        </script>
+    </body>
+</html>
