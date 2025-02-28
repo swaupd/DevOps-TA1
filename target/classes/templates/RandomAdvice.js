@@ -22,12 +22,37 @@ class RandomAdvice {
         this.button.textContent = 'Get New Advice';
         this.button.className = 'advice-button';
         
+        // Create feature buttons section
+        const featureSection = document.createElement('div');
+        featureSection.className = 'feature-section';
+        
+        const featureTitle = document.createElement('h3');
+        featureTitle.textContent = 'Additional Features';
+        featureTitle.className = 'feature-title';
+        
+        const featureButtons = document.createElement('div');
+        featureButtons.className = 'feature-buttons';
+        featureButtons.innerHTML = `
+            <a href="rating.html" class="feature-button">
+                <i class="fas fa-star"></i>
+                Rate Us
+            </a>
+            <a href="customer_comment.html" class="feature-button">
+                <i class="fas fa-comments"></i>
+                Leave a Comment
+            </a>
+        `;
+        
+        // Append all elements
         container.appendChild(title);
         container.appendChild(this.adviceElement);
         container.appendChild(this.button);
+        featureSection.appendChild(featureTitle);
+        featureSection.appendChild(featureButtons);
+        container.appendChild(featureSection);
         
         // Find the main content area or append to body
-        const mainContent = document.querySelector('main') || document.body;
+        const mainContent = document.querySelector('#adviceSection') || document.body;
         mainContent.appendChild(container);
 
         // Add event listener
@@ -104,6 +129,7 @@ const styles = `
         text-transform: uppercase;
         letter-spacing: 1px;
         font-weight: bold;
+        margin-bottom: 2rem;
     }
 
     .advice-button:hover {
@@ -117,6 +143,46 @@ const styles = `
         cursor: not-allowed;
         transform: none;
         box-shadow: none;
+    }
+
+    .feature-section {
+        margin-top: 2rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(44, 62, 80, 0.1);
+    }
+
+    .feature-title {
+        color: #2c3e50;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .feature-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    .feature-button {
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        background: linear-gradient(45deg, #3498db, #2980b9);
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        font-weight: bold;
+    }
+
+    .feature-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+    }
+
+    .feature-button i {
+        font-size: 1.2rem;
     }
 `;
 
