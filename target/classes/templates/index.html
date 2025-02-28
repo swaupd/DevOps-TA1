@@ -109,7 +109,46 @@
         border-radius: 15px;
         box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
       }
+
+      /* Add new styles for the feature buttons */
+      .feature-buttons {
+        display: flex;
+        gap: 1rem;
+        margin: 2rem 0;
+        justify-content: center;
+      }
+
+      .feature-button {
+        padding: 0.8rem 1.5rem;
+        border-radius: 8px;
+        border: none;
+        background: linear-gradient(45deg, #3498db, #2980b9);
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .feature-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+      }
+
+      .feature-button i {
+        font-size: 1.2rem;
+      }
+
+      #featureSection {
+        width: 100%;
+        display: none; /* Initially hidden */
+      }
     </style>
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   </head>
   <body>
     <nav>
@@ -134,6 +173,20 @@
       <div id="adviceSection">
         <!-- RandomAdvice component will be inserted here -->
       </div>
+
+      <!-- Add new feature section -->
+      <div id="featureSection">
+        <div class="feature-buttons">
+          <a href="rating.html" class="feature-button">
+            <i class="fas fa-star"></i>
+            Rate Us
+          </a>
+          <a href="customer_comment.html" class="feature-button">
+            <i class="fas fa-comments"></i>
+            Leave a Comment
+          </a>
+        </div>
+      </div>
     </main>
 
     <footer>
@@ -152,15 +205,23 @@
         const navButtons = document.getElementById('navButtons');
         const loginPrompt = document.getElementById('loginPrompt');
         const adviceSection = document.getElementById('adviceSection');
+        const featureSection = document.getElementById('featureSection');
 
         if (userDetails) {
           // User is logged in
           navButtons.innerHTML = `
+            <a href="rating.html" class="nav-button">
+              <i class="fas fa-star"></i> Rate
+            </a>
+            <a href="customer_comment.html" class="nav-button">
+              <i class="fas fa-comments"></i> Comment
+            </a>
             <span style="color: white; margin-right: 1rem;">Welcome, ${userDetails.username}</span>
             <button class="nav-button logout-btn" onclick="logout()">Logout</button>
           `;
           loginPrompt.style.display = 'none';
           adviceSection.style.display = 'block';
+          featureSection.style.display = 'block';
           
           // Initialize advice generator if not already initialized
           if (!window.adviceGenerator) {
@@ -174,6 +235,7 @@
           `;
           loginPrompt.style.display = 'block';
           adviceSection.style.display = 'none';
+          featureSection.style.display = 'none';
         }
       }
 
