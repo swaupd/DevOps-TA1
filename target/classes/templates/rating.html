@@ -71,6 +71,15 @@
                     this.nextElementSibling?.classList.remove('active');
                 });
             });
+
+            function submitRating() {
+                const feedback = document.getElementById('feedback').value;
+                if (selectRaing == 0){
+                    alert('Please slect a rating before submitting');
+                    return;
+                }
+                slert('Thankyou for your ${selectedRating}-star rating!\nFeedback: ${feedback}');
+            }
         </script>
     </body>
 </html>
