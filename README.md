@@ -33,6 +33,18 @@ A Spring Boot web application that provides random advice and allows users to in
 - Star rating interface
 - User feedback collection
 - Rating submission functionality
+| **Test Case No.** | **Description** | **Test Steps** | **Expected Output** | **Actual Output** | **Status** |
+|------------------|----------------|----------------|----------------------|------------------|------------|
+| **TC_01** | Verify page loads with correct title | Open the webpage in the browser | Page title should be "Rating Form" | ✅ Page title is "Rating Form" | ✅ Pass |
+| **TC_02** | Verify clicking a star selects it | Click on any star (e.g., 3rd star) | The selected star should turn gold | ❌ Only one star turns gold instead of all before it | ❌ Fail |
+| **TC_03** | Verify all stars are clickable | Click each star one by one | Each clicked star should turn gold | ❌ Only the last clicked star stays active, others do not stay active | ❌ Fail |
+| **TC_04** | Verify feedback textbox is present | Check if the textarea is visible | The feedback textbox should be displayed | ✅ Textarea is visible | ✅ Pass |
+| **TC_05** | Verify feedback input works | Enter text into the feedback box | Text should appear in the box | ✅ Text appears correctly in the box | ✅ Pass |
+| **TC_06** | Verify submit button exists | Check if the submit button is visible | The submit button should be displayed | ✅ Submit button is visible | ✅ Pass |
+| **TC_07** | Verify alert on submitting without a rating | Click submit without selecting a rating | An alert should appear saying "Please select a rating before submitting" | ❌ Alert text has a typo ("slect" instead of "select") | ❌ Fail |
+| **TC_08** | Verify submitting with rating and feedback | Select a rating, enter feedback, and submit | Alert should show rating and feedback text | ✅ Alert displays rating and feedback correctly | ✅ Pass |
+| **TC_09** | Verify multiple star clicks update selection | Click one star, then another | The latest clicked star should be active, previous should be inactive | ❌ Only the last clicked star remains active | ❌ Fail |
+| **TC_10** | Verify feedback is cleared after submission | Enter feedback, submit, and check the box | The feedback textbox should be empty after submission | ❌ Feedback is not cleared after submission | ❌ Fail |
 
 ### 5. Comment Section
 - User comment interface
