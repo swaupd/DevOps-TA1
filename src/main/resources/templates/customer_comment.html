@@ -23,7 +23,14 @@
         </div>
         <script>
             function addComment(){
-                
+                let commentText = document.getElementById('comment').value;
+                if(commentText.trim() == '')return;
+                let commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.textContent = commentText;
+
+                document.getElementById('comments').prepend(commentDiv);
+                document.getElementById('comment').value = '';
             }
         </script>
     </body>
