@@ -59,10 +59,10 @@
         <button onclick="submitRating()">Submit</button>
 
         <script>
-            let selectRating =0;
+            let selectRating = 0;
             const stars = document.querySelectorAll('.star');
 
-            star.forEach(star => {
+            stars.forEach(star => {
                 star.addEventListener('click', function() {
                     selectRating = this.getAttribute('data-value');
                     stars.forEach(s => s.classList.remove('active'));
@@ -74,11 +74,11 @@
 
             function submitRating() {
                 const feedback = document.getElementById('feedback').value;
-                if (selectRaing == 0){
+                if (selectRating == 0){
                     alert('Please slect a rating before submitting');
                     return;
                 }
-                slert('Thankyou for your ${selectedRating}-star rating!\nFeedback: ${feedback}');
+                alert('Thankyou for your ${selectedRating}-star rating!\nFeedback: ${feedback}');
             }
         </script>
     </body>
