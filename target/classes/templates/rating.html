@@ -57,5 +57,19 @@
         <textarea id="feedback" placeholder="Leave your feedback..."></textarea>
         <button onclick="submitRating()">Submit</button>
 
+        <script>
+            let selectRating =0;
+            const stars = document.querySelectorAll('.star');
+
+            star.forEach(star => {
+                star.addEventListener('click', function() {
+                    selectRating = this.getAttribute('data-value');
+                    stars.forEach(s => s.classList.remove('active'));
+                    this.classList.add('active');
+                    this.previousElementSibling?.classList.add('active');
+                    this.nextElementSibling?.classList.remove('active');
+                });
+            });
+        </script>
     </body>
 </html>
