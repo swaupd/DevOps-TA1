@@ -5,27 +5,184 @@
     <style>
       body {
         font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
         margin: 0;
         padding: 0;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
-      button {
-        background-color: #4CAF50;
+
+      nav {
+        width: 100%;
+        background: linear-gradient(to right, #2c3e50, #3498db);
+        padding: 1rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-left, .nav-right {
+        display: flex;
+        align-items: center;
+      }
+
+      nav a, .nav-button {
         color: white;
-        font-size: 16px;
-        padding: 10px 24px;
+        text-decoration: none;
+        margin: 0 1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: none;
+        background: none;
+        font-size: 1rem;
       }
-      p {
-        font-size: 24px;
-        color: #333;
-        margin-bottom: 20px;
+
+      nav a:hover, .nav-button:hover {
+        background-color: rgba(255,255,255,0.1);
+      }
+
+      .logout-btn {
+        background: rgba(255,255,255,0.1);
+        border: 1px solid white;
+      }
+
+      main {
+        flex: 1;
+        width: 100%;
+        max-width: 1200px;
+        padding: 2rem;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .welcome-container {
+        text-align: center;
+        margin: 2rem 0;
+      }
+
+      .auth-buttons {
+        display: flex;
+        gap: 1rem;
+        margin: 2rem 0;
+      }
+
+      .auth-button {
+        padding: 1rem 2rem;
+        border-radius: 25px;
+        border: none;
+        background: linear-gradient(45deg, #2c3e50, #3498db);
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+      }
+
+      .auth-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
+      }
+
+      footer {
+        width: 100%;
+        background: linear-gradient(to right, #2c3e50, #3498db);
+        color: white;
+        text-align: center;
+        padding: 1rem;
+        margin-top: auto;
+      }
+
+      #adviceSection {
+        display: none; /* Initially hidden */
+      }
+
+      #loginPrompt {
+        text-align: center;
+        padding: 2rem;
+        background: rgba(255,255,255,0.9);
+        border-radius: 15px;
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
       }
     </style>
   </head>
   <body>
-    <button onclick="displayAdvice()">Get Advice</button>
-    <p id="advice"></p>
+    <nav>
+      <div class="nav-left">
+        <a href="index.html">Home</a>
+      </div>
+      <div class="nav-right" id="navButtons">
+        <!-- Navigation buttons will be dynamically inserted here -->
+      </div>
+    </nav>
+
+    <main>
+      <div id="loginPrompt">
+        <h2>Welcome to Random Advice Generator</h2>
+        <p>Please login or register to continue</p>
+        <div class="auth-buttons">
+          <button class="auth-button" onclick="location.href='Login.html'">Login</button>
+          <button class="auth-button" onclick="location.href='Registration.html'">Register</button>
+        </div>
+      </div>
+
+      <div id="adviceSection">
+        <!-- RandomAdvice component will be inserted here -->
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Random Advice Generator. All rights reserved.</p>
+    </footer>
+
     <script src="RandomAdvice.js"></script>
+    <script>
+      // Check authentication status when page loads
+      document.addEventListener('DOMContentLoaded', function() {
+        checkAuthStatus();
+      });
+
+      function checkAuthStatus() {
+        const userDetails = JSON.parse(localStorage.getItem('userDetails'));
+        const navButtons = document.getElementById('navButtons');
+        const loginPrompt = document.getElementById('loginPrompt');
+        const adviceSection = document.getElementById('adviceSection');
+
+        if (userDetails) {
+          // User is logged in
+          navButtons.innerHTML = `
+            <span style="color: white; margin-right: 1rem;">Welcome, ${userDetails.username}</span>
+            <button class="nav-button logout-btn" onclick="logout()">Logout</button>
+          `;
+          loginPrompt.style.display = 'none';
+          adviceSection.style.display = 'block';
+          
+          // Initialize advice generator if not already initialized
+          if (!window.adviceGenerator) {
+            window.adviceGenerator = new RandomAdvice();
+          }
+        } else {
+          // User is not logged in
+          navButtons.innerHTML = `
+            <a href="Login.html">Login</a>
+            <a href="Registration.html">Register</a>
+          `;
+          loginPrompt.style.display = 'block';
+          adviceSection.style.display = 'none';
+        }
+      }
+
+      function logout() {
+        localStorage.removeItem('userDetails');
+        checkAuthStatus();
+        location.href = 'Login.html';
+      }
+    </script>
   </body>
 </html>
 

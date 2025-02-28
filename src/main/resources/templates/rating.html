@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name=""viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rating Form</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                text-align: center;
+                background-color: #f4f4f4;
+                margin: 50px;
+            }
+
+            .rating {
+                display: flex;
+                justify-content: center;
+                gap: 5px;
+                margin: 20px 0;
+            }
+
+            .star {
+                font-size: 30px;
+                cursor: pointer;
+                color: #ccc;
+            }
+
+            .star:hover, .star.active {
+                color: gold;
+            }
+
+            textarea {
+                width: 300px;
+                height: 100px;
+                padding: 10px;
+                margin-top: 10px;
+            }
+            button {
+                margin-top: 10px;
+                padding: 10px 20px;
+                background: #28a745;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Rate Your Experience</h2>
+        <div class="rating" id="rating">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+        <textarea id="feedback" placeholder="Leave your feedback..."></textarea>
+        <button onclick="submitRating()">Submit</button>
+
+    </body>
+</html>
